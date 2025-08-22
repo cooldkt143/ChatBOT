@@ -24,7 +24,7 @@ const historySchema = new mongoose.Schema({
 });
 const History = mongoose.model("History", historySchema);
 
-// API: Fetch histories
+// API: Fetch histories 
 app.get("/api/history", async (req, res) => {
   try {
     const histories = await History.find().sort({ createdAt: -1 });
