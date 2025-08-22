@@ -1,6 +1,12 @@
 import React from "react";
 
-export default function Sidebar({ sidebarOpen, setSidebarOpen, history, theme }) {
+export default function Sidebar({
+  sidebarOpen,
+  setSidebarOpen,
+  conversations,
+  theme,
+  loadConversation,
+}) {
   return (
     <>
       {/* Sidebar */}
@@ -13,23 +19,22 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, history, theme })
               : "bg-green-100 text-black"
           }`}
       >
-        <div className="p-4 border-b font-semibold text-lg">
-          History
-        </div>
+        <div className="p-4 border-b font-semibold text-lg">Conversations</div>
         <div className="p-4 space-y-2 overflow-y-auto h-[calc(100%-3rem)]">
-          {history.length > 0 ? (
-            history.map((item) => (
+          {conversations.length > 0 ? (
+            conversations.map((item) => (
               <div
                 key={item._id}
                 className={`p-2 rounded cursor-pointer hover:opacity-80 ${
-                  theme === "dark" ? "bg-gray-00" : "bg-green-200"
+                  theme === "dark" ? "bg-gray-800" : "bg-green-200"
                 }`}
+                onClick={() => loadConversation(item._id)}
               >
                 {item.title}
               </div>
             ))
           ) : (
-            <p className="text-sm opacity-70">No history found</p>
+            <p className="text-sm opacity-70">No conversations yet</p>
           )}
         </div>
       </div>
